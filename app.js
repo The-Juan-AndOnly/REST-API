@@ -4,14 +4,8 @@
 const express = require('express');
 const morgan = require('morgan');
 
-const Product = require('./models/Product');
 // Bring in database
 const sequelize = require('./db/database');
-
-sequelize
-  .sync()
-  .then(() => console.log('Database Connected'))
-  .catch(err => console.log(err));
 
 // variable to enable global error logging
 const enableGlobalErrorLogging =
@@ -20,13 +14,15 @@ const enableGlobalErrorLogging =
 // create the Express app
 const app = express();
 
+// Middleware to parse incoming JSON requests
 app.use(express.json());
 
 // setup morgan which gives us http request logging
 app.use(morgan('dev'));
 
 // TODO setup your api routes here
-// app.use('/products', require('./routes/products'));
+app.use('/api/users', require('./routes/users'));
+app.use('/api/courses', require('./routes/courses'));
 
 // setup a friendly greeting for the root route
 app.get('/', (req, res) => {
@@ -56,6 +52,13 @@ app.use((err, req, res, next) => {
 
 // set our port
 app.set('port', process.env.PORT || 5000);
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Database Connected');
+  })
+  .catch(err => console.log(err));
 
 // start listening on our port
 const server = app.listen(app.get('port'), () => {
