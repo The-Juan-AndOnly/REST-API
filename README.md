@@ -1,38 +1,68 @@
-
 # Full Stack JavaScript Techdegree v2 - REST API Project
 
-## Overview of the Provided Project Files
+A REST API that allows users to CREATE, READ, UPDATE, DELETE Courses as well as CREATE a USER and view currently authenticated USER.
 
-We've supplied the following files for you to use: 
+### Prerequisites
 
-* The `seed` folder contains a starting set of data for your database in the form of a JSON file (`data.json`) and a collection of files (`context.js`, `database.js`, and `index.js`) that can be used to create your app's database and populate it with data (we'll explain how to do that below).
-* We've included a `.gitignore` file to ensure that the `node_modules` folder doesn't get pushed to your GitHub repo.
-* The `app.js` file configures Express to serve a simple REST API. We've also configured the `morgan` npm package to log HTTP requests/responses to the console. You'll update this file with the routes for the API. You'll update this file with the routes for the API.
-* The `nodemon.js` file configures the nodemon Node.js module, which we are using to run your REST API.
-* The `package.json` file (and the associated `package-lock.json` file) contain the project's npm configuration, which includes the project's dependencies.
-* The `RESTAPI.postman_collection.json` file is a collection of Postman requests that you can use to test and explore your REST API.
+- Node: 8.0.0 later <https://nodejs.org/en/>
+- Postman: <https://www.getpostman.com/>
 
-## Getting Started
+### How to install
 
-To get up and running with this project, run the following commands from the root of the folder that contains this README file.
+- Download or Clone the repo to your local machine
 
-First, install the project's dependencies using `npm`.
+- Run `npm install` to install all dependencies of the Project
 
-```
-npm install
+- Seed the database by running `npm run seed` which will create the `fsjstd-restapi.db`
 
-```
+* Lastly run the application by using the command `npm start`
 
-Second, seed the SQLite database.
+* You can utilize the `RESTAPI.postman_collection.json` file in Postman to test the different routes and responses.
 
-```
-npm run seed
-```
+* To Test the Express server visit the URL [http://localhost:5000/](http://localhost:5000/).
 
-And lastly, start the application.
+#### Users Route
 
 ```
-npm start
+GET /api/users
 ```
 
-To test the Express server, browse to the URL [http://localhost:5000/](http://localhost:5000/).
+Will return the currently authenticated user
+
+```
+POST /api/users
+```
+
+Creates a new user
+
+#### Courses Route
+
+```
+GET /api/courses
+```
+
+Returns a list of courses ( includes the user that owns each course)
+
+```
+GET /api/courses/:id
+```
+
+Returns a course (including the user that own the course) for the provided course ID
+
+```
+POST /api/courses
+```
+
+Create a new course for an authenticated user
+
+```
+PUT /api/courses/:id
+```
+
+Updates a course for an authenticated user
+
+```
+DELETE /api/courses/:id
+```
+
+Deletes a course for an authenticated user

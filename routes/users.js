@@ -5,7 +5,7 @@ const auth = require('../controllers/auth');
 
 // @route GET api/users
 // @desc GET Users
-// @access Public
+// @access Protected
 router.get('/', auth, userController.getUsers);
 
 // @route POST api/users

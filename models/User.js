@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 
 const sequelize = require('../db/database');
-const Course = require('./Course');
 
 // Create User Table
 const User = sequelize.define('user', {
@@ -28,5 +27,5 @@ const User = sequelize.define('user', {
     allowNull: false
   }
 });
-User.hasMany(Course, { foreignKey: 'userId' });
+
 module.exports = User;

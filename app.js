@@ -4,8 +4,10 @@
 const express = require('express');
 const morgan = require('morgan');
 
-// Bring in database
+// Bring in database & Models
 const sequelize = require('./db/database');
+const Course = require('./models/Course');
+const User = require('./models/User');
 
 // variable to enable global error logging
 const enableGlobalErrorLogging =
@@ -53,6 +55,11 @@ app.use((err, req, res, next) => {
 // set our port
 app.set('port', process.env.PORT || 5000);
 
+// Create an association between the models
+Course.belongsTo(User, { foreignKey: 'userId' });
+User.hasMany(Course, { foreignKey: 'userId' });
+
+// Connect to DB
 sequelize
   .authenticate()
   .then(() => {

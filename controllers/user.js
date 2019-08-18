@@ -6,17 +6,6 @@ const bcrypt = require('bcryptjs');
 // Express Validator
 const { check, validationResult } = require('express-validator');
 
-// Get All Users
-exports.getUsers = async (req, res, next) => {
-  try {
-    const Users = await User.findAll();
-    // .then(Users => res.json({ Users }));
-    return res.json({ Users });
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 // User Validation
 exports.validate = method => {
   switch (method) {
@@ -32,6 +21,17 @@ exports.validate = method => {
       ];
     }
   }
+};
+
+// Get All Users
+exports.getUsers = (req, res, next) => {
+  const user = req.currentUser;
+  res.json({
+    id: user.id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    emailAddress: user.emailAddress
+  });
 };
 
 // Add a Single User
