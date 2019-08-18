@@ -23,7 +23,7 @@ exports.validate = method => {
   }
 };
 
-// Get All Users
+// Get Authorized User
 exports.getUsers = (req, res, next) => {
   const user = req.currentUser;
   res.json({
@@ -34,7 +34,7 @@ exports.getUsers = (req, res, next) => {
   });
 };
 
-// Add a Single User
+// Add a User
 exports.addUser = async (req, res, next) => {
   const { firstName, lastName, emailAddress, password } = req.body;
   try {

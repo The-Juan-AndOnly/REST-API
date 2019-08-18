@@ -5,6 +5,9 @@ A REST API that allows users to CREATE, READ, UPDATE, DELETE Courses as well as 
 ### Prerequisites
 
 - Node: 8.0.0 later <https://nodejs.org/en/>
+
+### Optional
+
 - Postman: <https://www.getpostman.com/>
 
 ### How to install
